@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{template.html}">
+    <head>
+        <title>
+            Cadastro de veículo | Estacionamento
+        </title>
+    </head>
+    <body>
+        <div layout:fragment="conteudo" class="page page-vehicles">
+            <a class="back-link" href="/veiculos/listagem">
+                ← Voltar para veículos
+            </a>
+            <header class="page-heading">
+                <div>
+                    <p class="eyebrow">
+                        GESTÃO DE CADASTROS
+                    </p>
+                    <h1>
+                        <span th:text="${veiculo == null} ? 'Novo veículo' : 'Editar veículo'">
+                        </span>
+                    </h1>
+                    <p class="page-description">
+                        Preencha os dados abaixo para manter seu cadastro atualizado.
+                    </p>
+                </div>
+            </header>
+            <section class="panel form-panel">
+                <div class="panel-heading">
+                    <h2>
+                        Dados do veículo
+                    </h2>
+                    <span class="subtle">
+                        * Campos obrigatórios
+                    </span>
+                </div>
+                <div class="form-body">
+                    <div class="notice" th:if="${listaCliente.isEmpty()}">
+                        Cadastre um cliente antes de adicionar um veículo.
+                        <a href="/clientes/formulario">
+                            Cadastrar cliente
+                        </a>
+                    </div>
+                    <form method="post" th:action="@{'/veiculos/formulario'}">
+                        <input type="hidden" name="_method" value="put" th:if="${veiculo != null}">
+                        <input type="hidden" name="id" th:value="${veiculo?.id}">
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="placa">
+                                    Placa
+                                    <span class="required">
+                                        *
+                                    </span>
+                                </label>
+                                <input id="placa" name="placa" th:value="${veiculo?.placa}" required>
+                            </div>
+                            <div class="field">
+                                <label for="modelo">
+                                    Modelo
+                                    <span class="required">
+                                        *
+                                    </span>
+                                </label>
+                                <input id="modelo" name="modelo" th:value="${veiculo?.modelo}" required>
+                            </div>
+                            <div class="field">
+                                <label for="cor">
+                                    Cor
+                                    <span class="optional">
+                                        opcional
+                                    </span>
+                                </label>
+                                <input id="cor" name="cor" th:value="${veiculo?.cor}">
+                            </div>
+                            <div class="field">
+                                <label for="cliente">
+                                    Proprietário
+                                    <span class="required">
+                                        *
+                                    </span>
+                                </label>
+                                <select id="cliente" name="cliente" required>
+                                    <option value="">
+                                        Selecione um cliente
+                                    </option>
+                                    <th:block th:each="c : ${listaCliente}">
+                                        <option th:value="${c.idCliente}"
+                            th:text="${c.nome}"
+                            th:selected="${veiculo != null and veiculo.cliente != null and veiculo.cliente.idCliente == c.idCliente}">
+                                        </option>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <input class="button button-primary" type="submit" th:value="${veiculo == null} ? 'Cadastrar' : 'Salvar alterações'">
+                            <a class="button button-secondary" href="/veiculos/listagem">
+                                Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

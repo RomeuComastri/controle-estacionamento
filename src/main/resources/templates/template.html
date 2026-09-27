@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#142738">
+        <title>
+            Estacionamento
+        </title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <a class="skip-link" href="#conteudo">
+            Ir para o conteúdo
+        </a>
+        <aside class="sidebar">
+            <a class="brand" href="/menus/principal">
+                <span class="brand-mark" aria-hidden="true">
+                    P
+                    <span>
+                    </span>
+                </span>
+                <span>
+                    Estacionamento
+                    <small>
+                        GESTÃO DE CADASTROS
+                    </small>
+                </span>
+            </a>
+            <p class="nav-label">
+                ÁREA DE GESTÃO
+            </p>
+            <nav aria-label="Navegação principal">
+                <a class="nav-link nav-home" href="/menus/principal">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m3 10 9-7 9 7v10H3Z M9 20v-7h6v7"/>
+                    </svg>
+                    Início
+                </a>
+                <a class="nav-link nav-clients" href="/clientes/listagem">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="9" cy="8" r="3"/>
+                        <path d="M3 21v-3a6 6 0 0 1 12 0v3 M17 5a3 3 0 0 1 0 6 M18 15a5 5 0 0 1 3 5"/>
+                    </svg>
+                    Clientes
+                </a>
+                <a class="nav-link nav-vehicles" href="/veiculos/listagem">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m4 10 2-6h12l2 6 M3 10h18v8H3Z M5 18v3 M19 18v3 M6 14h2 M16 14h2"/>
+                    </svg>
+                    Veículos
+                </a>
+                <a class="nav-link nav-search" href="/veiculos/buscar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="10" cy="10" r="6"/>
+                        <path d="m15 15 6 6"/>
+                    </svg>
+                    Consulta por cor
+                </a>
+            </nav>
+            <div class="sidebar-note">
+                <span class="sidebar-rule">
+                </span>
+                <strong>
+                    Organização em cada detalhe.
+                </strong>
+                <p>
+                    Clientes e veículos em um só lugar.
+                </p>
+            </div>
+        </aside>
+        <div class="workspace">
+            <div class="topbar">
+                <span>
+                    PAINEL ADMINISTRATIVO
+                </span>
+                <span class="topbar-detail">
+                    Estacionamento
+                    <span aria-hidden="true">
+                        /
+                    </span>
+                    Gestão
+                </span>
+            </div>
+            <main id="conteudo" tabindex="-1">
+                <section class="feedback-card" role="alert" th:if="${erroMensagem != null}">
+                    <span class="feedback-icon" aria-hidden="true">!</span>
+                    <div><h2 th:text="${erroTitulo}"></h2><p th:text="${erroMensagem}"></p>
+                    <a class="text-link" th:href="@{/veiculos/listagem}">Consultar veículos vinculados →</a></div>
+                </section>
+                <div layout:fragment="conteudo">
+                </div>
+            </main>
+            <footer class="app-footer">
+                <span>
+                    Estacionamento
+                </span>
+                <span>
+                    Gestão de clientes e veículos
+                </span>
+            </footer>
+        </div>
+        <dialog id="delete-dialog" class="confirm-dialog" aria-labelledby="delete-title" aria-describedby="delete-description">
+            <div class="dialog-body">
+                <span class="dialog-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h18 M9 6V3h6v3 M5 6l1 15h12l1-15 M10 10v7 M14 10v7"/></svg></span>
+                <p class="eyebrow">CONFIRMAÇÃO DE EXCLUSÃO</p>
+                <h2 id="delete-title">Excluir cadastro?</h2>
+                <p id="delete-description"></p>
+            </div>
+            <div class="dialog-actions">
+                <button type="button" class="button button-secondary" id="delete-cancel" autofocus>Cancelar</button>
+                <button type="button" class="button button-danger" id="delete-confirm">Excluir cadastro</button>
+            </div>
+        </dialog>
+        <script th:src="@{/js/interface.js}" defer></script>
+    </body>
+</html>

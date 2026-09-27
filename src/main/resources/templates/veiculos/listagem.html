@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{template.html}">
+    <head>
+        <title>
+            Veículos | Estacionamento
+        </title>
+    </head>
+    <body>
+        <div layout:fragment="conteudo" class="page page-vehicles">
+            <header class="page-heading">
+                <div>
+                    <p class="eyebrow">
+                        GESTÃO DE CADASTROS
+                    </p>
+                    <h1>
+                        Veículos
+                    </h1>
+                    <p class="page-description">
+                        Consulte e organize os veículos e seus respectivos proprietários.
+                    </p>
+                </div>
+                <a class="button button-primary" href="/veiculos/formulario">
+                    <span aria-hidden="true">
+                        +
+                    </span>
+                    Novo veículo
+                </a>
+            </header>
+            <section class="panel">
+                <div class="panel-heading">
+                    <h2>
+                        Veículos cadastrados
+                    </h2>
+                    <a class="text-link" href="/veiculos/buscar">
+                        Consultar por cor →
+                    </a>
+                </div>
+                <div class="table-scroll" role="region" aria-label="Tabela de Veículos" tabindex="0">
+                    <table>
+                        <caption class="sr-only">
+                            Listagem de veiculos
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Placa
+                                </th>
+                                <th scope="col">
+                                    Modelo
+                                </th>
+                                <th scope="col">
+                                    Cor
+                                </th>
+                                <th scope="col">
+                                    Cliente
+                                </th>
+                                <th scope="col">
+                                    Ações
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="veiculo : ${lista}">
+                                <td class="plate" th:text="${veiculo.placa}">
+                                </td>
+                                <td th:text="${veiculo.modelo}">
+                                </td>
+                                <td th:text="${veiculo.cor}">
+                                </td>
+                                <td th:text="${veiculo.cliente != null} ? ${veiculo.cliente.nome} : '-'">
+                                </td>
+                                <td class="row-actions">
+                                    <a th:href="@{/veiculos/formulario?id={id}(id=${veiculo.id})}" class="row-edit">
+                                        Editar
+                                    </a>
+                                    <form th:action="@{/veiculos}" method="post" class="inline-form"
+                      data-delete-kind="veículo" onsubmit="return window.confirmDeletion ? window.confirmDeletion(event) : confirm('Deseja realmente excluir este veículo?')">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="id" th:value="${veiculo.id}">
+                                        <input class="row-delete" type="submit" value="Excluir">
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr th:if="${lista.isEmpty()}">
+                                <td colspan="5" class="empty-state">
+                                    <strong>
+                                        Nenhum veículo cadastrado
+                                    </strong>
+                                    <p>
+                                        Comece adicionando o primeiro cadastro.
+                                    </p>
+                                    <a class="text-link" href="/veiculos/formulario">
+                                        Cadastrar veículo →
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

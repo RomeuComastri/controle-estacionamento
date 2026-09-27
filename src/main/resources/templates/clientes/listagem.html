@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{template.html}">
+    <head>
+        <title>
+            Clientes | Estacionamento
+        </title>
+    </head>
+    <body>
+        <div layout:fragment="conteudo" class="page page-clients">
+            <header class="page-heading">
+                <div>
+                    <p class="eyebrow">
+                        GESTÃO DE CADASTROS
+                    </p>
+                    <h1>
+                        Clientes
+                    </h1>
+                    <p class="page-description">
+                        Consulte e organize os proprietários e seus contatos.
+                    </p>
+                </div>
+                <a class="button button-primary" href="/clientes/formulario">
+                    <span aria-hidden="true">
+                        +
+                    </span>
+                    Novo cliente
+                </a>
+            </header>
+            <section class="panel">
+                <div class="panel-heading">
+                    <h2>
+                        Clientes cadastrados
+                    </h2>
+                    <span class="subtle">
+                        Proprietários e contatos
+                    </span>
+                </div>
+                <div class="table-scroll" role="region" aria-label="Tabela de Clientes" tabindex="0">
+                    <table>
+                        <caption class="sr-only">
+                            Listagem de clientes
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Nome
+                                </th>
+                                <th scope="col">
+                                    CPF
+                                </th>
+                                <th scope="col">
+                                    Telefone
+                                </th>
+                                <th scope="col">
+                                    Veículos
+                                </th>
+                                <th scope="col">
+                                    Ações
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="cliente : ${lista}">
+                                <td class="cell-primary" th:text="${cliente.nome}">
+                                </td>
+                                <td th:text="${cliente.cpf}">
+                                </td>
+                                <td th:text="${cliente.telefone}">
+                                </td>
+                                <td th:text="${cliente.listaVeiculo.size()}">
+                                </td>
+                                <td class="row-actions">
+                                    <a th:href="@{/clientes/formulario?id={id}(id=${cliente.idCliente})}" class="row-edit">
+                                        Editar
+                                    </a>
+                                    <form th:action="@{/clientes}" method="post" class="inline-form"
+                      data-delete-kind="cliente" onsubmit="return window.confirmDeletion ? window.confirmDeletion(event) : confirm('Deseja realmente excluir este cliente?')">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="id" th:value="${cliente.idCliente}">
+                                        <input class="row-delete" type="submit" value="Excluir">
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr th:if="${lista.isEmpty()}">
+                                <td colspan="5" class="empty-state">
+                                    <strong>
+                                        Nenhum cliente cadastrado
+                                    </strong>
+                                    <p>
+                                        Comece adicionando o primeiro cadastro.
+                                    </p>
+                                    <a class="text-link" href="/clientes/formulario">
+                                        Cadastrar cliente →
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

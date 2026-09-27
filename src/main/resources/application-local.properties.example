@@ -1,0 +1,6 @@
+# Copie para application-local.properties e ajuste para seu ambiente.
+# Exemplo local sem senha; nao inclua credenciais reais neste modelo.
+# --- Configuracao do banco MySQL ---
+spring.datasource.url=jdbc:mysql://localhost:3306/estacionamento?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=

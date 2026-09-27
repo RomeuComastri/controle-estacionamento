@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{template.html}">
+    <head>
+        <title>
+            Início | Estacionamento
+        </title>
+    </head>
+    <body>
+        <div layout:fragment="conteudo" class="page page-home">
+            <header class="page-heading">
+                <div>
+                    <p class="eyebrow">
+                        GESTÃO DE CADASTROS
+                    </p>
+                    <h1>
+                        Tudo em seu lugar.
+                    </h1>
+                    <p class="page-description">
+                        Gerencie seus clientes e veículos com clareza e praticidade.
+                    </p>
+                </div>
+            </header>
+            <section class="welcome-panel" aria-labelledby="welcome-title">
+                <div class="welcome-copy">
+                    <p class="eyebrow">
+                        GESTÃO SIMPLIFICADA
+                    </p>
+                    <h2 id="welcome-title">
+                        Mais organização.
+                        <br>
+                        Uma rotina mais simples.
+                    </h2>
+                    <p>
+                        Cadastre proprietários, mantenha os veículos atualizados e encontre as informações de que precisa.
+                    </p>
+                    <a class="button button-light" href="/veiculos/formulario">
+                        Cadastrar veículo
+                        <span aria-hidden="true">
+                            ↗
+                        </span>
+                    </a>
+                </div>
+                <div class="parking-art" aria-hidden="true">
+                    <span class="parking-line line-one">
+                    </span>
+                    <span class="parking-line line-two">
+                    </span>
+                    <span class="parking-p">
+                        P
+                    </span>
+                    <span class="parking-caption">
+                        ESTACIONAMENTO
+                    </span>
+                </div>
+            </section>
+            <div class="section-heading">
+                <h2>
+                    Acessos rápidos
+                </h2>
+                <span>
+                    Escolha por onde começar
+                </span>
+            </div>
+            <section class="quick-grid" aria-label="Acessos rápidos">
+                <article class="quick-card">
+                    <span class="card-number">
+                        01 / CLIENTES
+                    </span>
+                    <h3>
+                        Quem está com você
+                    </h3>
+                    <p>
+                        Consulte proprietários e mantenha os dados de contato organizados.
+                    </p>
+                    <a class="text-link" href="/clientes/listagem">
+                        Gerenciar clientes
+                        <span aria-hidden="true">
+                            →
+                        </span>
+                    </a>
+                    <a class="card-secondary" href="/clientes/formulario">
+                        Cadastrar cliente
+                    </a>
+                </article>
+                <article class="quick-card">
+                    <span class="card-number">
+                        02 / VEÍCULOS
+                    </span>
+                    <h3>
+                        Cada veículo, seu lugar
+                    </h3>
+                    <p>
+                        Acesse placas, modelos e o proprietário vinculado a cada cadastro.
+                    </p>
+                    <a class="text-link" href="/veiculos/listagem">
+                        Gerenciar veículos
+                        <span aria-hidden="true">
+                            →
+                        </span>
+                    </a>
+                    <a class="card-secondary" href="/veiculos/formulario">
+                        Cadastrar veículo
+                    </a>
+                </article>
+                <article class="quick-card">
+                    <span class="card-number">
+                        03 / CONSULTA
+                    </span>
+                    <h3>
+                        Encontre pela cor
+                    </h3>
+                    <p>
+                        Localize veículos por cor e consulte suas informações rapidamente.
+                    </p>
+                    <a class="text-link" href="/veiculos/buscar">
+                        Consultar veículos
+                        <span aria-hidden="true">
+                            →
+                        </span>
+                    </a>
+                </article>
+            </section>
+        </div>
+    </body>
+</html>

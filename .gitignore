@@ -1,0 +1,30 @@
+# Maven / arquivos compilados
+/target/
+/out/
+*.class
+
+# IDEs
+/.idea/
+*.iml
+*.ipr
+*.iws
+/.vscode/
+/.settings/
+/.classpath
+/.project
+
+# Configuracao pessoal e segredos
+/src/main/resources/application-local.properties
+/src/main/resources/application-local.yml
+/src/main/resources/application-local.yaml
+.env
+.env.*
+!.env.example
+
+# Logs e arquivos do sistema
+*.log
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# O Maven Wrapper (.mvn, mvnw e mvnw.cmd) deve ser versionado.

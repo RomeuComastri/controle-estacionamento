@@ -1,0 +1,6 @@
+package com.avaliativo.estacionamento.dto;
+
+import com.avaliativo.estacionamento.model.Cliente;
+
+public record DadosCadastroVeiculo(String placa, String modelo, String cor, Cliente cliente) {
+}
